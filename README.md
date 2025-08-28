@@ -1,8 +1,6 @@
-Password Generator
+## Password Generator
 A simple, secure, and interactive command-line password generator that works on Mac and Linux. Generate strong passwords with customizable options for length, symbols, numbers, and case sensitivity.
-Show Image
-Show Image
-Show Image
+
 Features
 Interactive prompts - No command-line arguments to remember
 Customizable length - Choose password length from 1-30 characters
@@ -124,30 +122,3 @@ Development Setup
 bash
 git clone https://github.com/yourusername/password-generator.git
 cd password-generator
-# Make changes
-python3 passgen.py  # Test your changes
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
-Troubleshooting
-Command not found: passgen
-Solution 1: Restart your terminal
-Solution 2: Check if it's in your PATH: echo $PATH
-Solution 3: Run directly: ~/.local/bin/passgen or /usr/local/bin/passgen
-Python not found
-Mac: Install with brew install python3 or download from python.org
-Linux: Install with your package manager: sudo apt install python3 (Ubuntu) or sudo yum install python3 (CentOS)
-Permission denied
-Make sure the script is executable: chmod +x /usr/local/bin/passgen
-For system-wide install, you might need sudo: sudo chmod +x /usr/local/bin/passgen
-Installation fails
-Check your internet connection
-Verify the GitHub URL is accessible: https://github.com/yourusername/password-generator
-Try manual installation instead
-Support
-If you find this tool useful, please consider:
-Starring this repository
-Reporting bugs or issues
-Suggesting new features
-Contributing to the code
-Made with for secure password generation
-Replace yourusername with your actual GitHub username before publishing.
