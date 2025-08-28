@@ -2,7 +2,7 @@
 """
 Password Generator - Interactive password creation tool
 Author: dominusUser
-GitHub: https://github.com/yourusername/password-generator
+GitHub: https://github.com/Domum-Git/password-generator
 """
 
 import random
