@@ -17,14 +17,14 @@ bash
 `curl -sSL https://raw.githubusercontent.com/Domum-Git/password-generator/main/install.sh | bash`
 
 # Download installer
-```curl -o install.sh https://raw.githubusercontent.com/yourusername/password-generator/main/install.sh```
+`curl -o install.sh https://raw.githubusercontent.com/Domum-Git/password-generator/main/install.sh`
 
 # Make executable and run
 chmod +x install.sh
 ./install.sh
 System-wide Install (requires sudo)
 bash
-sudo curl -sSL https://raw.githubusercontent.com/yourusername/password-generator/main/install.sh | bash
+sudo curl -sSL https://raw.githubusercontent.com/Domum-Git/password-generator/main/install.sh | bash
 Usage
 After installation, simply run:
 bash
@@ -55,7 +55,7 @@ Manual Installation
 If you prefer to install manually:
 Download the script:
 bash
-curl -o passgen.py https://raw.githubusercontent.com/yourusername/password-generator/main/passgen.py
+curl -o passgen.py https://raw.githubusercontent.com/Domum-Git/password-generator/main/passgen.py
 Make it executable:
 bash
 chmod +x passgen.py
@@ -71,7 +71,7 @@ export PATH="$HOME/.local/bin:$PATH"  # Add to ~/.bashrc or ~/.zshrc
 Development
 Running from Source
 bash
-git clone https://github.com/yourusername/password-generator.git
+git clone https://github.com/Domum-Git/password-generator.git
 cd password-generator
 python3 passgen.py
 Requirements
@@ -94,5 +94,5 @@ Pull Requests - Submit code improvements
 Documentation - Help improve the README or add examples
 Development Setup
 bash
-git clone https://github.com/yourusername/password-generator.git
+git clone https://github.com/Domum-Git/password-generator.git
 cd password-generator
