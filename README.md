@@ -17,7 +17,7 @@ bash
 `curl -sSL https://raw.githubusercontent.com/Domum-Git/password-generator/main/install.sh | bash`
 
 # Download installer
-curl -o install.sh https://raw.githubusercontent.com/yourusername/password-generator/main/install.sh
+```curl -o install.sh https://raw.githubusercontent.com/yourusername/password-generator/main/install.sh```
 
 # Make executable and run
 chmod +x install.sh
