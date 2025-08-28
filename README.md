@@ -1,20 +1,21 @@
-## Password Generator
+# Password Generator
 A simple, secure, and interactive command-line password generator that works on Mac and Linux. Generate strong passwords with customizable options for length, symbols, numbers, and case sensitivity.
 
-Features
+# Features
 Interactive prompts - No command-line arguments to remember
 Customizable length - Choose password length from 1-30 characters
 Character options - Toggle symbols, numbers, and uppercase letters
-Easy installation - One-command install script
+# Easy installation 
+One-command install script
 Cross-platform - Works on both Mac and Linux
-Secure - Uses Python's cryptographically secure random module
+# Secure 
+Uses Python's cryptographically secure random module
 No dependencies - Uses only Python standard library
-Quick Install
+# Quick Install
 One-Line Install
 bash
-curl -sSL https://raw.githubusercontent.com/yourusername/password-generator/main/install.sh | bash
-Manual Install
-bash
+curl -sSL https://raw.githubusercontent.com/Domum-Git/password-generator/main/install.sh | bash
+
 # Download installer
 curl -o install.sh https://raw.githubusercontent.com/yourusername/password-generator/main/install.sh
 
@@ -49,35 +50,8 @@ Symbols	Include special characters `!@#$%^&*()-_+=[]{}	;:,.<>?`
 Numbers	Include digits 0-9	No (n)
 Uppercase	Include uppercase letters A-Z	No (n)
 Note: Lowercase letters are always included to ensure a valid password.
-Examples
-Basic Password (lowercase only)
-bash
-$ passgen
-Enter password length (1-30): 12
-Include symbols? [n/Y]: n
-Include numbers? [n/Y]: n  
-Include uppercase letters? [n/Y]: n
 
-Generated Password: randomletters
-Strong Password (all options)
-bash
-$ passgen
-Enter password length (1-30): 20
-Include symbols? [n/Y]: y
-Include numbers? [n/Y]: y
-Include uppercase letters? [n/Y]: y
-
-Generated Password: X7#kL9@mN2$pQ5!wR8&t
-Quick Setup (press Enter for defaults)
-bash
-$ passgen
-Enter password length (1-30): 16
-Include symbols? [n/Y]: ↵
-Include numbers? [n/Y]: ↵
-Include uppercase letters? [n/Y]: ↵
-
-Generated Password: abcdefghijklmnop
-🛠️ Manual Installation
+Manual Installation
 If you prefer to install manually:
 Download the script:
 bash
