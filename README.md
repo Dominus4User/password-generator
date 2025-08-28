@@ -14,7 +14,7 @@ No dependencies - Uses only Python standard library
 # Quick Install
 One-Line Install
 bash
-curl -sSL https://raw.githubusercontent.com/Domum-Git/password-generator/main/install.sh | bash
+`curl -sSL https://raw.githubusercontent.com/Domum-Git/password-generator/main/install.sh | bash`
 
 # Download installer
 curl -o install.sh https://raw.githubusercontent.com/yourusername/password-generator/main/install.sh
