@@ -1,53 +1,32 @@
 #!/bin/bash
 
-# Password Generator Installer
-# Downloads and installs the password generator from GitHub
+# Password Generator Installer - System-wide Installation Only
+# Downloads and installs the password generator from GitHub to /usr/local/bin
 
-set -e  # Exit on any error
+set -e
 
 echo "Password Generator Installer"
-echo "================================"
+echo "=============================================="
 echo ""
 
-# GitHub repository details 
+# GitHub repository details
 GITHUB_USER="Domum-Git"
 REPO_NAME="password-generator"
 SCRIPT_NAME="passgen.py"
 GITHUB_URL="https://raw.githubusercontent.com/$GITHUB_USER/$REPO_NAME/main/$SCRIPT_NAME"
 
-# Check if running as root for system install
-if [ "$EUID" -eq 0 ]; then
-    INSTALL_DIR="/usr/local/bin"
-    echo "Installing system-wide to $INSTALL_DIR"
-else
-    # Try user install locations
-    if [ -d "$HOME/.local/bin" ]; then
-        INSTALL_DIR="$HOME/.local/bin"
-        echo "Installing to user directory: $INSTALL_DIR"
-    else
-        # Create ~/.local/bin if it doesn't exist
-        mkdir -p "$HOME/.local/bin"
-        INSTALL_DIR="$HOME/.local/bin"
-        echo "Created and installing to: $INSTALL_DIR"
-        
-        # Add to PATH if not already there
-        SHELL_RC=""
-        if [ -n "$ZSH_VERSION" ]; then
-            SHELL_RC="$HOME/.zshrc"
-        elif [ -n "$BASH_VERSION" ]; then
-            if [ -f "$HOME/.bashrc" ]; then
-                SHELL_RC="$HOME/.bashrc"
-            elif [ -f "$HOME/.bash_profile" ]; then
-                SHELL_RC="$HOME/.bash_profile"
-            fi
-        fi
-        
-        if [ -n "$SHELL_RC" ] && ! grep -q "$HOME/.local/bin" "$SHELL_RC" 2>/dev/null; then
-            echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> "$SHELL_RC"
-            echo "Added $HOME/.local/bin to PATH in $SHELL_RC"
-            echo "Run 'source $SHELL_RC' or restart your terminal"
-        fi
-    fi
+# System-wide installation directory
+INSTALL_DIR="/usr/local/bin"
+
+echo "Installing system-wide to $INSTALL_DIR"
+echo ""
+
+# Check if we need sudo
+if [ ! -w "$INSTALL_DIR" ]; then
+    echo "Sudo access required for system-wide installation"
+    echo "    You may be prompted for your password"
+    USE_SUDO="sudo"
+    echo ""
 fi
 
 # Check if curl is available
@@ -67,22 +46,39 @@ fi
 echo "Downloading password generator from GitHub..."
 echo "   URL: $GITHUB_URL"
 
-# Download the script
-if curl -fsSL "$GITHUB_URL" -o "$INSTALL_DIR/passgen"; then
-    echo "Downloaded successfully"
+# Download the script (with sudo if needed)
+if [ -n "$USE_SUDO" ]; then
+    if $USE_SUDO curl -fsSL "$GITHUB_URL" -o "$INSTALL_DIR/passgen"; then
+        echo "Downloaded successfully"
+    else
+        echo "   Failed to download from GitHub"
+        echo "   Please check:"
+        echo "   - Your internet connection"
+        echo "   - The GitHub URL is correct: $GITHUB_URL"
+        exit 1
+    fi
 else
-    echo "Failed to download from GitHub"
-    echo "   Please check:"
-    echo "   - Your internet connection"
-    echo "   - The GitHub URL is correct: $GITHUB_URL"
-    exit 1
+    if curl -fsSL "$GITHUB_URL" -o "$INSTALL_DIR/passgen"; then
+        echo "Downloaded successfully"
+    else
+        echo "Failed to download from GitHub"
+        echo "   Please check:"
+        echo "   - Your internet connection"
+        echo "   - The GitHub URL is correct: $GITHUB_URL"
+        exit 1
+    fi
 fi
 
-# Make it executable
-chmod +x "$INSTALL_DIR/passgen"
+# Make it executable (with sudo if needed)
+if [ -n "$USE_SUDO" ]; then
+    $USE_SUDO chmod +x "$INSTALL_DIR/passgen"
+else
+    chmod +x "$INSTALL_DIR/passgen"
+fi
+
 echo "Made executable"
 
-# Test if it's in PATH
+# Test if it's accessible
 if command -v passgen >/dev/null 2>&1; then
     echo "Installation successful!"
     echo ""
@@ -97,16 +93,17 @@ if command -v passgen >/dev/null 2>&1; then
     fi
 else
     echo "Installation complete but 'passgen' not found in PATH"
-    echo "   Try running: $INSTALL_DIR/passgen"
-    echo "   Or restart your terminal and try: passgen"
+    echo "   This is unusual for /usr/local/bin"
+    echo "   Try restarting your terminal or running: $INSTALL_DIR/passgen"
 fi
 
 echo ""
-echo "Setup complete!"
+echo "System-wide installation complete!"
 echo ""
-echo " Quick start:"
+echo "Quick start:"
 echo "   1. Run: passgen"
 echo "   2. Follow the prompts"
 echo "   3. Get your secure password!"
 echo ""
-echo " GitHub: https://github.com/$GITHUB_USER/$REPO_NAME"
+echo "Installed to: $INSTALL_DIR/passgen"
+echo "GitHub: https://github.com/Domum-Git/password-generator"
